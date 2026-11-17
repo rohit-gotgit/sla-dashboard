@@ -1,0 +1,24 @@
+{
+  "name": "sla-monitoring-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CSV health-check upload -> serverless cleaning -> Postgres -> SLA dashboard",
+  "scripts": {
+    "dev": "tsx scripts/dev-server.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "verify": "tsx scripts/verify-samples.ts"
+  },
+  "dependencies": {
+    "pg": "^8.13.0"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.2.17",
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.11.10",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  },
+  "engines": { "node": ">=20" }
+}
