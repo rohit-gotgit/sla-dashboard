@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SLA Monitoring Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <h1>SLA Monitoring Dashboard</h1>
+    <label class="muted">Dataset
+      <select id="dataset" aria-label="Dataset"></select>
+    </label>
+    <a class="btn primary" href="upload.html">Upload CSV</a>
+  </header>
+
+  <main id="app" hidden>
+    <section class="card" aria-label="Period">
+      <div class="filters" style="padding-top:12px">
+        <div>
+          <div class="muted" style="font-size:12px;margin-bottom:2px">Period (UTC) — applies to stats and logs</div>
+          <div class="seg" role="radiogroup" aria-label="Period mode">
+            <label><input type="radio" name="mode" value="all" checked><span>All</span></label>
+            <label><input type="radio" name="mode" value="date"><span>Single date</span></label>
+            <label><input type="radio" name="mode" value="range"><span>Date range</span></label>
+          </div>
+        </div>
+        <label id="f-date" hidden>Date <input type="date" id="date"></label>
+        <label id="f-from" hidden>From <input type="date" id="from"></label>
+        <label id="f-to" hidden>To <input type="date" id="to"></label>
+        <span id="period-error" class="muted" role="alert"></span>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="stats-title">
+      <div class="card-head">
+        <button class="toggle" id="stats-toggle" aria-expanded="true" aria-controls="stats-body">
+          <span class="chev" aria-hidden="true">▾</span><span id="stats-title">Stats</span>
+          <span class="muted" id="stats-sub" style="font-weight:400"></span>
+        </button>
+      </div>
+      <div class="body" id="stats-body"></div>
+    </section>
+
+    <section class="card" aria-labelledby="logs-title">
+      <div class="card-head"><h2 id="logs-title">Check logs</h2><span class="muted" id="logs-count"></span></div>
+      <div class="filters">
+        <label>Service <select id="f-service"><option value="">All services</option></select></label>
+        <label>Outcome
+          <select id="f-outcome">
+            <option value="">All</option><option value="down">Down (5xx)</option>
+            <option value="up">Up</option><option value="unknown">Unknown (invalid status)</option>
+          </select>
+        </label>
+        <label>Rows per page
+          <select id="f-size"><option>25</option><option selected>50</option><option>100</option><option>200</option></select>
+        </label>
+      </div>
+      <div class="scroll"><table aria-describedby="logs-count">
+        <thead><tr>
+          <th>Time (UTC)</th><th>Service</th><th class="num">Status</th><th>Outcome</th>
+          <th class="num">Latency (ms)</th><th>Agent</th><th>Region</th><th class="num" title="Raw rows merged into this check">Reports</th>
+        </tr></thead>
+        <tbody id="logs-body"></tbody>
+      </table></div>
+      <div id="logs-msg"></div>
+      <div class="pager">
+        <button id="prev">← Prev</button><button id="next">Next →</button>
+        <span class="muted spacer" id="page-info"></span>
+      </div>
+    </section>
+  </main>
+
+  <div id="empty" class="card empty" hidden>
+    <p><strong>No data yet.</strong></p>
+    <p class="muted">Upload a monitoring CSV to get started.</p>
+    <a class="btn primary" href="upload.html">Upload CSV</a>
+  </div>
+  <div id="fatal" class="error" hidden></div>
+  <script src="common.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
