@@ -2,9 +2,10 @@
 
 Upload a CSV of health-check logs → a serverless function cleans and validates it → cleaned checks are stored in Postgres → a single-screen dashboard shows SLA stats and the underlying logs.
 
-- **Live app:** `TODO – paste your Vercel URL`
-- **Last verified live:** `TODO – date`
-- **Upload screen:** `<live url>/upload.html` · **Dashboard:** `<live url>/`
+| **Live app** | https://sla-dashboard-nu.vercel.app |
+| **Last verified live** | 2026-11-17 |
+| **Upload screen** | https://sla-dashboard-nu.vercel.app/upload.html |
+| **Dashboard** | https://sla-dashboard-nu.vercel.app/ |
 
 ## 1. Architecture
 
