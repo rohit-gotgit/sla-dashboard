@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Upload — SLA Monitoring Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <h1>Upload health-check logs</h1>
+    <a class="btn" href="./">← Dashboard</a>
+  </header>
+  <main style="max-width:820px">
+    <section class="card"><div class="body" style="padding-top:16px">
+      <div class="dropzone" id="drop">
+        <p><strong>Drop a CSV here</strong> or choose a file</p>
+        <p><input type="file" id="file" accept=".csv,text/csv"></p>
+        <p class="muted">Required columns: service_id, service_name, timestamp, status_code, latency, latency_unit, agent, region · max 4 MB</p>
+        <button class="primary" id="go" disabled>Upload &amp; process</button>
+      </div>
+      <p id="status" role="status" class="muted"></p>
+    </div></section>
+    <section class="card" id="result" hidden>
+      <div class="card-head"><h2>Upload processed</h2><a class="btn primary" id="open" href="./">Open dashboard →</a></div>
+      <div class="body" id="result-body"></div>
+    </section>
+  </main>
+  <script src="common.js"></script>
+  <script src="upload.js"></script>
+</body>
+</html>
